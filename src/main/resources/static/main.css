@@ -1,0 +1,115 @@
+table {
+    border-collapse: collapse;
+}
+
+td, th {
+    border: 1px solid #999;
+    padding: 0.5rem;
+    text-align: left;
+}
+
+.table-borderless > tbody > tr > td,
+.table-borderless > tbody > tr > th,
+.table-borderless > tfoot > tr > td,
+.table-borderless > tfoot > tr > th,
+.table-borderless > thead > tr > td,
+.table-borderless > thead > tr > th {
+    border: none;
+}
+
+body {
+    padding-top: 70px;
+}
+
+/*https://stackoverflow.com/questions/25887927/bootstrap-some-kind-of-margin-on-mobile-devices-only-right-side*/
+html, body {
+    overflow-x: hidden;
+}
+
+@media screen and (max-width: 780px) {
+    body {
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+}
+
+
+.notimportant {
+    font-weight: normal !important;
+}
+
+@media screen and (max-width: 780px) {
+    .navbar-left {
+        padding-left: 12px;
+    }
+}
+
+@media screen and (max-width: 780px) {
+    .nomarginsmall {
+        padding-left: 0px;
+        padding-right:0px;
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+}
+
+.badge-success {
+    background-color: #356635;
+}
+.badge-info {
+    background-color: #3a87ad;
+}
+.badge-error {
+    background-color: #b94a48;
+}
+.badge-warning {
+    background-color: #f89406;
+}
+.badge-inverse {
+    background-color: #333333;
+}
+
+.googleplayheight {
+    height:45px;
+}
+
+/* https://stackoverflow.com/questions/6666532/how-to-force-table-cell-td-content-to-wrap*/
+table {
+    table-layout: fixed;
+    width: 100%
+}
+
+td {
+
+    /* css-3 */
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+}
+
+/*https://stackoverflow.com/questions/39325414/line-break-in-html-with-n*/
+.just-line-break {
+    white-space: pre-line;
+}
+
+
+.copyurlbutton{
+    white-space:normal !important;
+    word-wrap: break-word;
+}
+
+.eventTitleSize {
+    font-size: 24px;
+}
+
+@media screen and (max-width: 780px) {
+    .eventTitleSize {
+        font-size: 16px;
+        font-weight:bold;
+    }
+
+    .centredSmall {
+        text-align:center;
+    }
+}
