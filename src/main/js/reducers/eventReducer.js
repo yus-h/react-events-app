@@ -39,7 +39,7 @@ export default (state = INITIAL_STATE, action) => {
         case GET_EVENT:
             return {
                 ...state,
-                singleEvent: action.payload
+                singleEvent: action.payload.data
             };
         case GET_EVENTS:
             let activePage = state.activePage;
