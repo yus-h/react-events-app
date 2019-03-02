@@ -1,2 +1,14 @@
 export const GET_EVENTS = 'GET_EVENTS';
 export const GET_EVENT = 'GET_EVENT';
+
+
+export const SET_START_DATE = 'SET_START_DATE';
+export const SET_END_DATE = 'SET_END_DATE';
+export const SET_LAT_AND_LNG = 'SET_LAT_AND_LNG';
+
+export const SET_ACTIVE_PAGE = 'SET_ACTIVE_PAGE';
+export const SET_RADIUS = 'SET_RADIUS';
+export const SET_LOC_PLACEHOLDER = 'SET_LOC_PLACEHOLDER';
+
+export const SET_EVENTS_SEARCH_PARAMS = 'SET_EVENTS_SEARCH_PARAMS';
+

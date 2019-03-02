@@ -5,7 +5,7 @@ This application is used to view any submit events happening near you.
 This is a PoC  to demonstrate the following technologies working
 together:
 * Spring Boot
-* ReactJS
+* ReactJS + Redux
 * MongoDB
 * Bootstrap
 * Google Location API
@@ -18,16 +18,19 @@ together:
 A local mongoDB should be setup. Once setup, please configure the 
 credentials in the application.properties files.
 
+NOTE: After adding events, they must fulfil the criteria set by the front end filters
+(i.e. location radius, start date, end date) to appear on the UI. 
+Events must also have the "approved" property set to true before appearing on the UI.
+This can be done via the admin panel.
+
 
 ### Mock Data
 
 Currently the app is mocking data to demonstrate functionality
-without the DB setup. The mock data is initialised in events_index.js
-and event_show.js. 
+without the DB setup. The mock data is initialised in js/actions/index.js
 
-Mock data will appear if communication with the
-DB fails/OR the DB returns 0 results. Uncomment these lines if you have the DB
-up and running.
+Mock data will appear if communication with the DB fails.
+Uncomment these lines if you have the DB up and running.
 
 **NOTE: Date/Location filters will NOT work if you are only using mock data.** 
 
@@ -55,7 +58,8 @@ The username/password can be found in Constants.java and these values are automa
 added to the DB on first startup.
 
 Once you are logged in you can view the admin panel at localhost:8080/adminpanel, which
-will provide an interface to add events, view messages etc.
+will provide an interface to add events (via the form or JSON), view the history of events,
+view messages etc.
 
 ### reCAPTCHA
 reCAPTCHA is implemented on the Contact us and Admin panel login
@@ -73,8 +77,7 @@ line at the bottom of the file and replace the URL with your googleapis.com/map/
 ### TODO
 
 * Replace HTTP request library with axios completely
-* Integrate redux
-* Upgrade babel (?) so it can recognise async await syntax
+* Refactor remaining of app using redux
 
 ## Screenshots
 

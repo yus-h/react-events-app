@@ -74,6 +74,7 @@ class PlaceSearch extends React.Component {
             </div>
         )
     }
+
 }
 
 
