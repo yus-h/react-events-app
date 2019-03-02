@@ -74,6 +74,7 @@ line at the bottom of the file and replace the URL with your googleapis.com/map/
 
 * Replace HTTP request library with axios completely
 * Integrate redux
+* Upgrade babel (?) so it can recognise async await syntax
 
 ## Screenshots
 

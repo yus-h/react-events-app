@@ -8,6 +8,11 @@ import CopyToClipboard from 'react-copy-to-clipboard';
 import AlertContainer from 'react-alert'
 import axiosLib from '../../api/axiosLib';
 
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { getEvent } from '../../actions';
+
+
 import {
     ShareButtons,
     generateShareIcon
@@ -47,57 +52,12 @@ class EventShow extends Component {
 
     constructor(props) {
         super(props);
-
-        this.state = {
-            singleevent2: null
-        };
     }
 
     componentDidMount() {
         const id = this.props.match.params.id;
-        this.performGetRequest(id);
+        this.props.getEvent(id);
     }
-
-
-    performGetRequest(id) {
-        console.log('GET REQUEST ID: ', id);
-
-        axiosLib.get('/api/events/' + id)
-            .then(response => {
-            console.log('DATA REPONSE####', response);
-            this.setState({singleevent: response.entity});
-            })
-            .catch(err => {
-                console.log('ERR2', err);
-                // TODO temp mocking data
-                this.setState({singleevent:  {
-                    "id": "test-1",
-                    "title":"Waltham Forest: The Mayor’s London Borough of Culture 2019",
-                    "description":"The Mayor’s London Borough of Culture celebrates Waltham Forest’s cultural heritage, diversity, talent and places, during a 12-month programme of events. ",
-                    "startDate":1551272400000,
-                    "finishDate":1551279600000,
-                    "createdDate":null,
-                    "posterURL":"https://www.cityoflondon.gov.uk/things-to-do/green-spaces/epping-forest/visitor-information/wheretogoineppingforest/PublishingImages/walthamstow-forest-lg.jpg",
-                    "address":"London Gatwick",
-                    "approved":false,
-                    "emailAddress":"admin.web@gmail.com",
-                    "additionalInformation":null,
-                    "cost":null,
-                    "eventWebsite":null,
-                    "contactPhone":null,
-                    "contactEmail":null,
-                    "location":[
-                        51.1536621,
-                        -0.1820629
-                    ],
-                    "g-recaptcha-response":null
-                }});
-
-            });
-
-
-    };
-
 
 
     showAlert () {
@@ -110,23 +70,23 @@ class EventShow extends Component {
 
     render() {
 
-        if (this.state.singleevent == null) {
+        if (this.props.singleevent == null) {
             return ( <div>Loading...</div>);
         }
 
-        let sameDay = moment(this.state.singleevent.startDate).isSame(moment(this.state.singleevent.finishDate), 'day');
+        let sameDay = moment(this.props.singleevent.startDate).isSame(moment(this.props.singleevent.finishDate), 'day');
         let startDate;
         let finishDate;
 
         if (sameDay) {
-            startDate= moment(this.state.singleevent.startDate).format('MMMM Do YYYY h:mm a');
-            finishDate = moment(this.state.singleevent.finishDate).format("h:mm a");
+            startDate= moment(this.props.singleevent.startDate).format('MMMM Do YYYY h:mm a');
+            finishDate = moment(this.props.singleevent.finishDate).format("h:mm a");
         } else {
-            startDate= moment(this.state.singleevent.startDate).format('MMMM Do YYYY h:mm a');
-            finishDate = moment(this.state.singleevent.finishDate).format('MMMM Do YYYY h:mm a');
+            startDate= moment(this.props.singleevent.startDate).format('MMMM Do YYYY h:mm a');
+            finishDate = moment(this.props.singleevent.finishDate).format('MMMM Do YYYY h:mm a');
         }
 
-        const title = 'Local Events: '  + this.state.singleevent.title;
+        const title = 'Local Events: '  + this.props.singleevent.title;
 
         const pathname = this.props.location.pathname;
         //TODO tbc if port is needed. Revisit this later.
@@ -141,13 +101,13 @@ class EventShow extends Component {
 
                 <div className="panel panel-primary">
                     <div className="panel-heading">
-                        <h4>{this.state.singleevent.title}</h4>
+                        <h4>{this.props.singleevent.title}</h4>
                     </div>
                     <div className="panel-body just-line-break">
 
                         <div className="container-fluid">
                             <div className="row">
-                                <img src={this.state.singleevent.posterURL} className="img-responsive center-block"/>
+                                <img src={this.props.singleevent.posterURL} className="img-responsive center-block"/>
                             </div>
                         </div>
 
@@ -162,26 +122,26 @@ class EventShow extends Component {
                             </tr>
                             <tr>
                                 <td><b>Where</b></td>
-                                <td>{this.state.singleevent.address}</td>
+                                <td>{this.props.singleevent.address}</td>
                             </tr>
-                            {this.state.singleevent.eventWebsite != null && this.state.singleevent.eventWebsite != "" &&
+                            {this.props.singleevent.eventWebsite != null && this.props.singleevent.eventWebsite != "" &&
                             <tr>
                                 <td><b>Website</b></td>
                                 <td><a
-                                    href={this.state.singleevent.eventWebsite}>{this.state.singleevent.eventWebsite}</a>
+                                    href={this.props.singleevent.eventWebsite}>{this.props.singleevent.eventWebsite}</a>
                                 </td>
                             </tr>
                             }
-                            {this.state.singleevent.contactPhone != null && this.state.singleevent.contactPhone != "" &&
+                            {this.props.singleevent.contactPhone != null && this.props.singleevent.contactPhone != "" &&
                             <tr>
                                 <td><b>Phone</b></td>
-                                <td>{this.state.singleevent.contactPhone}</td>
+                                <td>{this.props.singleevent.contactPhone}</td>
                             </tr>
                             }
-                            {this.state.singleevent.contactEmail != null && this.state.singleevent.contactEmail != "" &&
+                            {this.props.singleevent.contactEmail != null && this.props.singleevent.contactEmail != "" &&
                             <tr>
                                 <td><b>Email</b></td>
-                                <td>{this.state.singleevent.contactEmail}</td>
+                                <td>{this.props.singleevent.contactEmail}</td>
                             </tr>
                             }
                             <tr>
@@ -263,7 +223,7 @@ class EventShow extends Component {
 
                         </table>
 
-                        {this.state.singleevent.description}
+                        {this.props.singleevent.description}
                     </div>
                 </div>
             </div>
@@ -272,4 +232,14 @@ class EventShow extends Component {
 }
 
 
-export default EventShow;
+//  Copy redux state to component props
+const mapStateToProps = (state) => {
+    return {
+        singleevent: state.events.singleEvent,
+    };
+
+};
+
+export default connect(mapStateToProps,
+    {getEvent})(EventShow);
+// export default EventShow;

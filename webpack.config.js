@@ -24,10 +24,14 @@ module.exports = {
                 test: path.join(__dirname, '.'),
                 exclude: /(node_modules)/,
                 loader: 'babel',
+                // Get spread operator working https://github.com/babel/babel-loader/issues/170
+                // stage 0 and async await syntax: https://github.com/webpack/webpack/issues/2785
                 query: {
                     cacheDirectory: true,
-                    presets: ['es2015', 'react']
+                    presets: ['es2015', 'react', 'stage-0'],
+                    plugins: ["transform-es2015-destructuring", "transform-object-rest-spread"]
                 }
+
             },
             { test: /\.css$/, loader: "style-loader!css-loader" },
             { test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192' }
