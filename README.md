@@ -81,6 +81,9 @@ line at the bottom of the file and replace the URL with your googleapis.com/map/
 
 ## Screenshots
 
+#### Home page
 ![Home](images/home.png)
 
+
+#### Specific Event page
 ![Event Page](images/event_view.png)
