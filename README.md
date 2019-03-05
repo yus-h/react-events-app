@@ -78,6 +78,7 @@ line at the bottom of the file and replace the URL with your googleapis.com/map/
 
 * Replace HTTP request library with axios completely
 * Refactor remaining of app using redux
+* Add faceted search filters for event types
 
 ## Screenshots
 
